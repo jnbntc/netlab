@@ -58,6 +58,11 @@ if (!empty($_POST["server"])) {
     echo "<div class=\"mt-4\">";
     echo "<h6>Comando Ejecutado: <small class='text-muted'><code>" . htmlspecialchars($command) . "</code></small></h6>";
     echo "<pre class=\"bg-dark text-white p-3 border rounded\">" . htmlspecialchars($raw_output) . "</pre>";
+
+    // Detectar si el servidor está ocupado
+    if (strpos($raw_output, 'the server is busy running a test') !== false) {
+        echo '<div class="alert alert-danger mt-2"><strong>Error:</strong> El servidor iPerf3 está ocupado ejecutando otra prueba. Por favor, intenta nuevamente en unos segundos.</div>';
+    }
     
     if ($return_code === 0) {
         echo "<div class=\"alert alert-success mt-2\">Comando completado exitosamente.</div>";
