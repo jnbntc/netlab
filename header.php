@@ -28,7 +28,7 @@ if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- ===== LÍNEA MODIFICADA PARA APUNTAR AL ARCHIVO FAVICON.PNG ===== -->
-<link rel="icon" type="image/png" href="/nettoolbox/favicon.png">
+<link rel="icon" type="image/png" href="/netlab/favicon.png">
 <!-- ================================================================ -->
 
 </head>
@@ -37,9 +37,9 @@ if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded mb-4 shadow-sm">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/nettoolbox/">
+  <a class="navbar-brand" href="/netlab/">
         <!-- ===== LÍNEA MODIFICADA PARA APUNTAR AL ARCHIVO FAVICON.PNG ===== -->
-        <img src="/nettoolbox/favicon.png" alt="Icono" width="30" height="30" class="d-inline-block align-text-top me-2">
+  <img src="/netlab/favicon.png" alt="Icono" width="30" height="30" class="d-inline-block align-text-top me-2">
         <!-- ================================================================ -->
         Network Toolbox
     </a>
@@ -54,10 +54,10 @@ if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
             Diagnóstico Local
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/nettoolbox/ping.php">Ping</a></li>
-            <li><a class="dropdown-item" href="/nettoolbox/traceroute.php">Traceroute</a></li>
-            <li><a class="dropdown-item" href="/nettoolbox/nmap/">Nmap Scanner</a></li>
-            <li><a class="dropdown-item" href="/nettoolbox/arpscan.php">ARP Scan</a></li>
+            <li><a class="dropdown-item" href="/netlab/ping.php">Ping</a></li>
+            <li><a class="dropdown-item" href="/netlab/traceroute.php">Traceroute</a></li>
+            <li><a class="dropdown-item" href="/netlab/nmap/">Nmap Scanner</a></li>
+            <li><a class="dropdown-item" href="/netlab/arpscan.php">ARP Scan</a></li>
           </ul>
         </li>
         
@@ -66,10 +66,10 @@ if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
             Herramientas VLAN
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/nettoolbox/dhcp-discover.php">DHCP Discover</a></li>
-            <li><a class="dropdown-item" href="/nettoolbox/ipv6-discover.php">IPv6 Discover</a></li>
-            <li><a class="dropdown-item" href="/nettoolbox/switch-port-analyzer.php">Switch Port Analyzer</a></li>
-            <li><a class="dropdown-item" href="/nettoolbox/packet-capture.php">Packet Capture</a></li>
+            <li><a class="dropdown-item" href="/netlab/dhcp-discover.php">DHCP Discover</a></li>
+            <li><a class="dropdown-item" href="/netlab/ipv6-discover.php">IPv6 Discover</a></li>
+            <li><a class="dropdown-item" href="/netlab/switch-port-analyzer.php">Switch Port Analyzer</a></li>
+            <li><a class="dropdown-item" href="/netlab/packet-capture.php">Packet Capture</a></li>
           </ul>
         </li>
 
@@ -78,10 +78,10 @@ if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
             Herramientas Externas
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/nettoolbox/dnslookup.php">DNS Lookup</a></li>
-            <li><a class="dropdown-item" href="/nettoolbox/httpheaders.php">HTTP Headers</a></li>
-            <li><a class="dropdown-item" href="/nettoolbox/geoip.php">GeoIP Lookup</a></li>
-            <li><a class="dropdown-item" href="/nettoolbox/whois.php">Whois Lookup</a></li>
+            <li><a class="dropdown-item" href="/netlab/dnslookup.php">DNS Lookup</a></li>
+            <li><a class="dropdown-item" href="/netlab/httpheaders.php">HTTP Headers</a></li>
+            <li><a class="dropdown-item" href="/netlab/geoip.php">GeoIP Lookup</a></li>
+            <li><a class="dropdown-item" href="/netlab/whois.php">Whois Lookup</a></li>
           </ul>
         </li>
         
@@ -90,15 +90,15 @@ if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
             Rendimiento
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/nettoolbox/iperf.php">iPerf3</a></li>
-            <li><a class="dropdown-item" href="/nettoolbox/speedtest.php">Speedtest</a></li>
+            <li><a class="dropdown-item" href="/netlab/iperf.php">iPerf3</a></li>
+            <li><a class="dropdown-item" href="/netlab/speedtest.php">Speedtest</a></li>
           </ul>
         </li>
 
       </ul>
     </ul>
     <?php if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true): ?>
-      <form class="d-flex ms-3" action="/nettoolbox/logout.php" method="post">
+  <form class="d-flex ms-3" action="/netlab/logout.php" method="post">
         <button type="submit" class="btn btn-outline-light">Cerrar sesión</button>
       </form>
     <?php endif; ?>

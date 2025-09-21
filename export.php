@@ -12,7 +12,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 $format = isset($_GET['format']) ? $_GET['format'] : 'txt';
 $tool = isset($_GET['tool']) ? preg_replace('/[^a-zA-Z0-9-]/', '', $_GET['tool']) : 'desconocido';
 
-$temp_file = '/tmp/nettoolbox_result_' . session_id() . '.txt';
+$temp_file = '/tmp/netlab_result_' . session_id() . '.txt';
 
 if (!file_exists($temp_file)) {
     die("Error: No se encontró ningún resultado para exportar. Por favor, ejecuta una herramienta primero.");

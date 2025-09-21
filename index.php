@@ -42,7 +42,7 @@ $tools = [
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title"><?= htmlspecialchars($tool['name']) ?></h5>
                     <p class="card-text flex-grow-1"><?= htmlspecialchars($tool['desc']) ?></p>
-                    <a href="/nettoolbox/<?= $tool['file'] ?>" class="btn btn-primary mt-auto">Ir a la Herramienta</a>
+                    <a href="/netlab/<?= $tool['file'] ?>" class="btn btn-primary mt-auto">Ir a la Herramienta</a>
                 </div>
             </div>
         </div>

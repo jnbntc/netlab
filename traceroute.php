@@ -58,7 +58,7 @@ if (!empty($_POST["host"])) {
     passthru($command . " 2>&1", $return_code);
     $raw_output = ob_get_clean();
 
-    $temp_file = '/tmp/nettoolbox_result_' . session_id() . '.txt';
+  $temp_file = '/tmp/netlab_result_' . session_id() . '.txt';
     file_put_contents($temp_file, $raw_output);
 
     echo "<div class=\"mt-4\">";

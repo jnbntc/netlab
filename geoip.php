@@ -36,7 +36,7 @@ if (!empty($_POST["ip"])) {
             }
         }
         
-        $temp_file = '/tmp/nettoolbox_result_' . session_id() . '.txt';
+    $temp_file = '/tmp/netlab_result_' . session_id() . '.txt';
         file_put_contents($temp_file, $raw_output);
         
         echo "<div class=\"mt-4\"><pre class=\"bg-dark text-white p-3 border rounded\">" . htmlspecialchars($raw_output) . "</pre>";

@@ -43,7 +43,7 @@ if (!empty($_POST["interface"])) {
     exec($command . " 2>&1", $output_array, $return_code);
     $raw_output = implode("\n", $output_array);
 
-    $temp_file = '/tmp/nettoolbox_result_' . session_id() . '.txt';
+  $temp_file = '/tmp/netlab_result_' . session_id() . '.txt';
     file_put_contents($temp_file, $raw_output);
 
     echo "<div class=\"mt-4\">";
