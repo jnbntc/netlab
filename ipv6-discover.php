@@ -49,7 +49,15 @@ if (!empty($_POST["interface"])) {
 
     echo "<div class=\"mt-4\">";
     echo "<h6>Comando Ejecutado: <small class='text-muted'><code>" . htmlspecialchars($command) . "</code></small></h6>";
-    echo "<pre class=\"bg-dark text-white p-3 border rounded\">" . htmlspecialchars($raw_output) . "</pre>";
+  echo "<pre class=\"bg-dark text-white p-3 border rounded\">" . htmlspecialchars($raw_output) . "</pre>";
+
+  // Detectar error de nmap por script no encontrado
+  if (strpos($raw_output, "'broadcast-ping6' did not match a category") !== false) {
+    echo '<div class="alert alert-danger mt-2"><strong>Error:</strong> El script <code>broadcast-ping6</code> no se encuentra disponible en tu instalación de Nmap.\n'
+       . 'Este script suele estar en el paquete <code>nmap-scripts</code> o <code>nmap</code> estándar.\n'
+       . 'Verifica que esté instalado correctamente o consulta la documentación de tu distribución para instalar los scripts NSE de Nmap.'
+       . '</div>';
+  }
     
     if ($return_code === 0) {
         echo "<div class=\"alert alert-success mt-2\">Comando completado exitosamente.</div>";
