@@ -1,4 +1,13 @@
 <?php
+// Hacer la sesión persistente (30 días)
+$lifetime = 60 * 60 * 24 * 30; // 30 días
+session_set_cookie_params([
+    'lifetime' => $lifetime,
+    'path' => '/',
+    'secure' => isset($_SERVER['HTTPS']),
+    'httponly' => true,
+    'samesite' => 'Lax',
+]);
 session_start();
 // Usuario y contraseña definidos (puedes cambiarlos)
 $USER = 'admin';
@@ -8,6 +17,14 @@ $error = '';
 if (isset($_POST['username']) && isset($_POST['password'])) {
     if ($_POST['username'] === $USER && $_POST['password'] === $PASS) {
         $_SESSION['authenticated'] = true;
+        // Renovar cookie de sesión
+        setcookie(session_name(), session_id(), [
+            'expires' => time() + $lifetime,
+            'path' => '/',
+            'secure' => isset($_SERVER['HTTPS']),
+            'httponly' => true,
+            'samesite' => 'Lax',
+        ]);
         header('Location: index.php');
         exit;
     } else {
