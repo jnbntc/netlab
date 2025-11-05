@@ -1,7 +1,5 @@
 <?php
-session_start();
-$_SESSION = [];
-session_destroy();
-header('Location: login.php');
+// Logout disabled. Redirect to the main dashboard.
+header('Location: /netlab/index.php', true, 302);
 exit;
 ?>

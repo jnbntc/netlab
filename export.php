@@ -1,13 +1,8 @@
 <?php
-session_start();
 require('fpdf186/fpdf.php');
 
-// --- LÍNEA AÑADIDA Y CONFIGURADA ---
 // Forzamos la zona horaria a UTC-3.
-// 'America/Argentina/Buenos_Aires' es una zona horaria estándar para UTC-3 que maneja correctamente
-// cualquier regla horaria local. Otras opciones podrían ser 'America/Sao_Paulo' o 'America/Santiago'.
 date_default_timezone_set('America/Argentina/Buenos_Aires');
-// --- FIN DE LA MODIFICACIÓN ---
 
 $format = isset($_GET['format']) ? $_GET['format'] : 'txt';
 $tool = isset($_GET['tool']) ? preg_replace('/[^a-zA-Z0-9-]/', '', $_GET['tool']) : 'desconocido';

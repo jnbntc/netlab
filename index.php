@@ -5,7 +5,6 @@
  */
 // Desactivar buffering para permitir streaming de salida
 
-session_start();
 include 'header.php';
 
 // Array asociativo con la información de todas las herramientas para generar las tarjetas

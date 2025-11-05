@@ -1,5 +1,4 @@
 <?php
-session_start();
 // La ruta al header debe ser '../' porque estamos en un subdirectorio.
 include '../header.php';
 ?>

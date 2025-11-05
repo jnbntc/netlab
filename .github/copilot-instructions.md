@@ -9,20 +9,20 @@ Summary (big picture)
 - Tools execute system binaries (nmap, arp-scan, ip, iperf3, tcpdump, whois, dig/dnsutils, speedtest) via `shell_exec`/`passthru` and capture output to `/tmp/netlab_result_{session_id}.txt`.
 
 Key files to examine
-- `header.php` — session start, authentication check (redirects to `login.php` unless `$_SESSION['authenticated'] === true`), Bootstrap + navbar. Use this to find nav items and global includes.
+- `header.php` — Bootstrap + navbar and global includes. Note: authentication was removed in this branch; header no longer redirects to `login.php`.
 - `index.php` — dashboard and `$tools` array. Example tool entries: `['name'=>'ARP Scan','file'=>'arpscan.php',... ]`.
-- `login.php` / `logout.php` — simple session-based auth. `header.php` enforces it.
+- (Login/logout removed) The repo previously used `login.php`/`logout.php` for a simple session-based auth; the current branch has that flow disabled.
 - `export.php` — exports `/tmp/netlab_result_*.txt` to TXT/CSV/PDF (see existing export links in tools).
 - Example tools that show patterns: `arpscan.php` (sanitizes interface, calls `/usr/sbin/arp-scan`), `nmap/index.php` (builds nmap command using `escapeshellarg()` and `passthru()`), `iperf.php`, `packet-capture.php`.
 
 Conventions & patterns (important to follow)
-- Page scaffold: always `session_start(); include 'header.php'; ... include 'footer.php';` (subdirs use `include '../header.php'`).
+- Page scaffold: include `header.php` and `footer.php` around the tool content. Do NOT call `session_start()` in new tools — this repo has session/auth disabled.
 - Input/output sanitization:
 	- Use `htmlspecialchars()` for HTML output.
 	- Use `escapeshellarg()` for command arguments.
 	- For interface names the code uses `preg_replace('/[^a-zA-Z0-9.-@]/','', $value)` — follow the same whitelist approach when appropriate.
 - Command execution and results:
-	- Tools commonly use `ob_start(); passthru($command . ' 2>&1', $return_code); $raw_output = ob_get_clean();` then write to `/tmp/netlab_result_'.session_id().'.txt` and show export links.
+	- Tools commonly use `ob_start(); passthru($command . ' 2>&1', $return_code); $raw_output = ob_get_clean();` then write to `/tmp/netlab_result_'.session_id().'.txt` and show export links. Note: with sessions disabled `session_id()` will be empty, so tools will write to `/tmp/netlab_result_.txt` unless you change the naming strategy.
 	- Check `$return_code` to determine success and present user-friendly messages.
 - UI: Bootstrap is loaded from CDN in `header.php`; change layout there.
 
@@ -47,9 +47,9 @@ Security notes (practical)
 - Temp results are stored in `/tmp/netlab_result_{session_id}.txt` — consider retention and permissions when deploying.
 
 How to add a new tool (short checklist)
-1. Create `mytool.php` in repo root (or subfolder). Start with `session_start(); include 'header.php';` and end with `include 'footer.php';`.
+1. Create `mytool.php` in repo root (or subfolder). Start with `include 'header.php';` and end with `include 'footer.php';` (do not call `session_start()`).
 2. Sanitize inputs; use `escapeshellarg()` for any command arguments.
-3. Use `ob_start()/passthru()` to capture output and write to `/tmp/netlab_result_'.session_id().'.txt`.
+3. Use `ob_start()/passthru()` to capture output. Current tools write results to `/tmp/netlab_result_'.session_id().'.txt`; consider using a per-tool fixed filename (e.g. `/tmp/netlab_result_mytool.txt`) if you want sessionless isolation.
 4. Add an entry to `$tools` in `index.php` to show it on the dashboard.
 5. Optional: add export links `export.php?format=txt&tool=mytool`.
 

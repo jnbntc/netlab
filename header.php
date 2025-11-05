@@ -5,7 +5,6 @@
  */
 // Desactivar buffering para permitir streaming de salida
 
-session_start();
 while (@ob_end_flush());
 ini_set('output_buffering', 'off');
 ini_set('zlib.output_compression', false);
