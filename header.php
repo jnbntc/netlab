@@ -10,14 +10,7 @@ while (@ob_end_flush());
 ini_set('output_buffering', 'off');
 ini_set('zlib.output_compression', false);
 header('Content-Encoding: none');
-// --- AUTENTICACIÓN ---
-if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
-  if (basename($_SERVER['PHP_SELF']) !== 'login.php') {
-    header('Location: login.php');
-    exit;
-  }
-}
-// --- FIN AUTENTICACIÓN ---
+// Authentication removed: tools are publicly accessible in this build.
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -97,11 +90,6 @@ if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
 
       </ul>
     </ul>
-    <?php if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true): ?>
-  <form class="d-flex ms-3" action="/netlab/logout.php" method="post">
-        <button type="submit" class="btn btn-outline-light">Cerrar sesión</button>
-      </form>
-    <?php endif; ?>
     </div>
   </div>
 </nav>
